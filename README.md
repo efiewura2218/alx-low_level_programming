@@ -1,1 +1,1 @@
-my readme file for sub dirctory
+my readme file for the root directory
