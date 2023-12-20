@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * void print_alphabet_x10 - this is a function using putchar twice
+ *print_alpabet_x10 - this is the function
  *Return: 0
  */
 void print_alphabet_x10(void)
