@@ -1,8 +1,8 @@
 #include "main.h"
 /**
-*print_alphabet_x10 - this is to print the alphabest 10times
-*Return: void here
-*Description: this function prints 10x alphabets
+* print_alphabet_x10 - this is to print the alphabest 10times
+* Return: void here
+* Description: this function prints 10x alphabets
 */
 void print_alphabet_x10(void)
 {
