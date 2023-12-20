@@ -1,21 +1,20 @@
 #include "main.h"
 /**
- *main - print_alpabet_x10 this is the function
- *Description - this describes the printing of alphabet in tens
- *Return: 0
- */
+*print_alphabet_x10 - this is to print the alphabest 10times
+*Return: void here
+*Description: this function prints 10x alphabets
+*/
 void print_alphabet_x10(void)
 {
-char b;
-int m = 0;
-while (m <= 9)
+char c;
+int i = 0;
+while (i <= 10)
 {
-for (b = 'a'; b <= 'z'; b++)
+for (c = 'a'; c <= 'z'; c++)
 {
-_putchar(b);
+_putchar(c);
 }
 _putchar('\n');
-m++;
+i++;
 }
 }
-
