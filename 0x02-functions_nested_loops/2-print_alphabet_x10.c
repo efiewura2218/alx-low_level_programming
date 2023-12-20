@@ -1,0 +1,20 @@
+#include "main.h"
+/**
+ * void print_alphabet_x10 - this is a function using putchar twice
+ *Return: 0
+ */
+void print_alphabet_x10(void)
+{
+char b;
+int m = 0;
+while (m <= 9)
+{
+for (b = 'a'; b <= 'z'; b++)
+{
+_putchar(b);
+}
+_putchar('\n');
+m++;
+}
+}
+
