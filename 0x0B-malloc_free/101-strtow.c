@@ -1,66 +1,86 @@
 #include <stdlib.h>
 #include "main.h"
-#include <string.h>
+
+int word_len(char *str);
+int count_words(char *str);
+char **strtow(char *str);
 /**
- * ch_free_grid - main entry
- * @grid: input
- * @height: input
+ *word_len - locates the index marking th nd of the
+ *first word contained within a string.
+ *@str: The string to be searched.
+ *
+ * Retunr: The index marking the end of the initial word pointed to by str.
  */
-void ch_free_grid(char **grid, size_t height)
+int word_len(char *str)
 {
-	if (grid != NULL &&  height != 0)
+	int index = 0, len = 0;
+
+	while (*(str + index) && *(str + index)!= ' ')
 	{
-	for (; height > 0; height--)
-	free(grid[height]);
-			free(grid[height]);
-	free(grid);
+		len++;
+		index++;
 	}
+	return (len);
 }
 /**
- * strtow - splits string into two
+ * count_words - Counts the number ofwords cntained within a string.
+ * @str: The string to be serched.
  *
- * @str: string with ords to be splited
- * Return: a pointer to the new allocated memory for the string
+ * Return: The number fo the words contained within str.
  */
-char **strtow(char *str);
+int count_words(char *str)
 {
-	char **aout;
-	size_t c, height, i, j, a1;
 
-	if (str == NULL || *str == '\0')
-	return (NULL);
-	for (c = height = 0; str[c] != '\0'; c++)
-	if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
-	height++;
-	aout = malloc(sizeof(char *) * (height = 1));
-	if (aout == NULL)
+	int index = 0, words = 0;
+
+	for (index = 0; *(str + index); index++)
+{
+	if (*(str + index)!= ' ')
 	{
-		free(aout);
+		words++;
+		index += word_len(str + index);
+	}
+}
+	return (words);
+}
+/**
+ * strtow - Splits a string into words.
+ * @str: The string to be split.
+ *
+ * Return: If str = Null, str = "", or the function fails - NULL.
+ * otherwise - a pointer to an array of strings (words).
+ */
+char **strtow(char *str)
+{
+	char **strings;
+
+	int index = 0, words, w, letters, l;
+
+	if (str == NULL || str[0] == '\0')
 		return (NULL);
-	}
-	for (i = a1 = 0; i < height; i++)
+	words = count_words(str);
+	if (words == 0)
+		return (NULL);
+	strings = malloc(sizeof(char *) * (words + 1));
+	if (strings == NULL)
+		return (NULL);
+	for (w = 0; w < words; w++)
 	{
-		for (c = a1; str[c] != '\0'; c++)
+		while (str[index] == ' ')
+			index++;
+		letters = word_len(str + index);
+		strings[w] = malloc(sizeof(char) * (letters + 1));
+		if (strings[w] == NULL)
 		{
-			if (str[c] == ' ')
-				a1++;
-			if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
-			{
-				aout[i] = malloc((c - a1 + 2) * sizeof(char));
-				if (aout[i] == NULL)
-				{
-					ch_free_grid(a, i);
-					return (NULL);
-				}
-				break;
-
-			}
+			for (; w >= 0; w--)
+				free(strings[w]);
+			free(strings);
+			return (NULL);
 		}
-		for (j = 0; a1 <= c; a1++, j++)
-			aout[i][j] = str[a1];
-		aout[i][j] = '\0';
+		for (l = 0; l < letters; l++)
+			strings[w][l] = str[index++];
+		strings[w][l] = '\0';
 	}
-	aout[i] = NULL;
-
-	return (aout);
-	}
+	strings[w] = NULL;
+	return (strings);
+}
