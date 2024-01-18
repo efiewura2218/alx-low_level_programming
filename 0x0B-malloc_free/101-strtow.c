@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "main.h"
+#include <string.h>
 /**
  * ch_free_grid - main entry
  * @grid: input
@@ -16,13 +17,13 @@ void ch_free_grid(char **grid, size_t height)
 	}
 }
 /**
- * strtwo - splits string into two
+ * strtow - splits string into two
  *
  * @str: string with ords to be splited
  * Return: a pointer to the new allocated memory for the string
  */
 char **strtow(char *str);
-{	
+{
 	char **aout;
 	size_t c, height, i, j, a1;
 
@@ -46,7 +47,7 @@ char **strtow(char *str);
 			if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
 			{
 				aout[i] = malloc((c - a1 + 2) * sizeof(char));
-				if (a[i] == NULL)
+				if (aout[i] == NULL)
 				{
 					ch_free_grid(a, i);
 					return (NULL);
@@ -60,5 +61,6 @@ char **strtow(char *str);
 		aout[i][j] = '\0';
 	}
 	aout[i] = NULL;
+
 	return (aout);
-}
+	}
