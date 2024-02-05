@@ -1,1 +1,1 @@
-Project on Singly linked lists
+Tasks on Singly linked lists
